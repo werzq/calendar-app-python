@@ -16,3 +16,6 @@
 <p><b>Step 3:</b> Run the Python script</p>
 
     python calendar_app.py
+
+<p>You should get something like this</p>
+<img src="https://github.com/werzq/calendar-app-python/blob/97f44a5ec4e8ff0937ada00e0489191e0369f2c6/preview.png">
