@@ -1,12 +1,13 @@
 import sys
 import sqlite3
-from datetime import datetime, date
+from datetime import datetime
 from PyQt5.QtWidgets import (
     QApplication, QMainWindow, QVBoxLayout, QHBoxLayout, QCalendarWidget, QPushButton,
     QLineEdit, QListWidget, QListWidgetItem, QWidget, QMessageBox, QLabel, QComboBox,
-    QInputDialog, QSizePolicy, QToolBar, QAction, QDialog, QFormLayout, QCheckBox, QDateEdit
+    QInputDialog, QSizePolicy, QAction, QDialog, QFormLayout, QCheckBox, QDateEdit
 )
-from PyQt5.QtCore import Qt, QDate
+from PyQt5.QtGui import QIcon
+from PyQt5.QtCore import Qt, QDate, QSize
 
 # Adapter & converter for DB (unified time format)
 def adapt_date(date):
@@ -197,15 +198,18 @@ class CalendarApp(QMainWindow):
         self.refresh_events()
 
     def add_toolbar_buttons(self):
-        refresh_action = QAction('Refresh', self)
+        self.toolbar.setToolButtonStyle(Qt.ToolButtonTextBesideIcon)
+        self.toolbar.setIconSize(QSize(20, 20))
+
+        refresh_action = QAction(QIcon('icons/refresh.png'), 'Refresh', self)
         refresh_action.triggered.connect(self.refresh_events)
         self.toolbar.addAction(refresh_action)
 
-        advanced_search_action = QAction('Advanced Search', self)
+        advanced_search_action = QAction(QIcon('icons/search.png'), 'Advanced Search', self)
         advanced_search_action.triggered.connect(self.show_advanced_search)
         self.toolbar.addAction(advanced_search_action)
 
-        about_action = QAction('About', self)
+        about_action = QAction(QIcon('icons/info.png'), 'About', self)
         about_action.triggered.connect(self.show_about_dialog)
         self.toolbar.addAction(about_action)
 
@@ -225,6 +229,7 @@ class CalendarApp(QMainWindow):
             <li>PyQt5</li>
             <li>SQLite</li>
         </ul>
+        <p><i>Icons by <b>RemixIcons</b> @ <a href="https://remixicon.com/">https://remixicon.com</a></i></p>
         <hr>
         <p><i>This application is designed to help you manage your events and schedules effectively.</i></p>
         """
